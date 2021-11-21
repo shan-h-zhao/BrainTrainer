@@ -4,6 +4,7 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import android.os.Bundle;
 import android.util.Log;
+import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
 
@@ -12,6 +13,16 @@ import java.util.List;
 import java.util.Random;
 
 public class MainActivity extends AppCompatActivity {
+
+    int correctTag;
+
+    public void pickAnswer(View view) {
+        Button clicked = (Button) view;
+        if (clicked.getTag().equals(Integer.toString(correctTag))) {
+            Log.i("clicked correct button", Integer.toString(correctTag));
+        }
+
+    }
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -40,14 +51,8 @@ public class MainActivity extends AppCompatActivity {
         buttons.add(button2);
         buttons.add(button3);
 
-//        buttons.get(0).setText("test");
-//        Log.i("tag", String.valueOf(buttons.get(0).getTag().equals(1)));
-
         final int correctTag = new Random().nextInt(4);
         for (Button b: buttons) {
-            Log.i("correctTag", String.valueOf(correctTag));
-            Log.i("getTag", String.valueOf(b.getTag()));
-            Log.i("getTag", String.valueOf(b.getTag().equals(Integer.toString(correctTag))));
             if (b.getTag().equals(Integer.toString(correctTag))) {
                 b.setText(Integer.toString(result0));
             } else {
