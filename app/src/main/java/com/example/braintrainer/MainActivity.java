@@ -2,15 +2,20 @@ package com.example.braintrainer;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.annotation.SuppressLint;
 import android.os.Bundle;
+import android.os.CountDownTimer;
 import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
 
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 import java.util.Random;
+import java.util.TimeZone;
 
 public class MainActivity extends AppCompatActivity {
 
@@ -61,7 +66,7 @@ public class MainActivity extends AppCompatActivity {
 
     }
 
-    // onClick function to check if the correct answer is clicked
+    // onClick function to check if the correct answer is clicked, and update the question
     public void pickAnswer(View view) {
         Button clicked = (Button) view;
         Log.i("clicked button", String.valueOf(clicked.getTag()));
@@ -77,6 +82,15 @@ public class MainActivity extends AppCompatActivity {
         updateQuestion ();
     }
 
+    // Create a function to convert seconds to hh:mm:ss
+    public String convertTime (Date milliSeconds) {
+        @SuppressLint("SimpleDateFormat") SimpleDateFormat df = new SimpleDateFormat("HH:mm:ss"); // HH for 0-23
+        df.setTimeZone(TimeZone.getTimeZone("GMT"));
+        return df.format(milliSeconds);
+    }
+
+
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -88,11 +102,28 @@ public class MainActivity extends AppCompatActivity {
         button2 = findViewById(R.id.button2);
         button3 = findViewById(R.id.button3);
 
+        TextView timerTextView = findViewById(R.id.timerTextView);
+
         // Update question
         updateQuestion ();
 
         // Update score counter
         scoreTextView = findViewById(R.id.scoreTextView);
+        scoreTextView.setText("0/0");
+
+        // Countdown timer
+        new CountDownTimer(60000, 1000) {
+            @Override
+            public void onTick(long l) {
+                String timeLeft = convertTime (new Date(l));
+                timerTextView.setText(timeLeft);
+            }
+
+            @Override
+            public void onFinish() {
+
+            }
+        }.start();
 
 
 
