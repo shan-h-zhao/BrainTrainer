@@ -57,15 +57,18 @@ public class MainActivity extends AppCompatActivity {
             buttons.add(button3);
 
             correctTag = new Random().nextInt(4);
+            ArrayList<Integer> answers = new ArrayList<>();
+            answers.add(correctResult);
             for (Button b: buttons) {
                 if (b.getTag().equals(Integer.toString(correctTag))) {
                     b.setText(Integer.toString(correctResult));
                 } else {
                     int randomAnswer = new Random().nextInt(20);
-                    while (randomAnswer == correctResult) {
+                    while (answers.contains(randomAnswer)) {
                         randomAnswer = new Random().nextInt(20);
                     }
                     b.setText(Integer.toString(randomAnswer));
+                    answers.add(randomAnswer);
                 }
             }
         }
