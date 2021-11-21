@@ -12,8 +12,10 @@
         android:layout_height="41dp"
         android:layout_marginStart="33dp"
         android:layout_marginTop="43dp"
+        android:background="#C83F35"
         android:text="TextView"
         android:textAlignment="center"
+        android:textSize="20sp"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
@@ -25,6 +27,7 @@
         android:layout_marginTop="43dp"
         android:text="TextView"
         android:textAlignment="center"
+        android:textSize="24sp"
         app:layout_constraintStart_toEndOf="@+id/timerTextView"
         app:layout_constraintTop_toTopOf="parent" />
 
@@ -35,18 +38,20 @@
         android:layout_marginStart="29dp"
         android:layout_marginTop="43dp"
         android:layout_marginEnd="32dp"
+        android:background="#4CAF50"
         android:text="TextView"
         android:textAlignment="center"
+        android:textSize="20sp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toEndOf="@+id/questionTextView"
         app:layout_constraintTop_toTopOf="parent" />
 
     <androidx.gridlayout.widget.GridLayout
         android:id="@+id/gridLayout"
-        android:layout_width="404dp"
-        android:layout_height="345dp"
+        android:layout_width="400dp"
+        android:layout_height="288dp"
         android:layout_marginStart="1dp"
-        android:layout_marginTop="1dp"
+        android:layout_marginTop="50dp"
         android:layout_marginEnd="1dp"
         app:columnCount="2"
         app:layout_constraintEnd_toEndOf="parent"
@@ -58,26 +63,28 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:onClick="pickAnswer"
+            android:tag="0"
             android:text="Button0"
+            android:textSize="20sp"
             app:layout_column="0"
             app:layout_columnWeight="1"
             app:layout_gravity="fill"
             app:layout_row="0"
-            app:layout_rowWeight="1"
-            android:tag="0"/>
+            app:layout_rowWeight="1" />
 
         <Button
             android:id="@+id/button1"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:onClick="pickAnswer"
+            android:tag="1"
             android:text="Button1"
+            android:textSize="20sp"
             app:layout_column="1"
             app:layout_columnWeight="1"
             app:layout_gravity="fill"
             app:layout_row="0"
-            app:layout_rowWeight="1"
-            android:tag="1"/>
+            app:layout_rowWeight="1" />
 
         <Button
             android:id="@+id/button2"
@@ -86,6 +93,7 @@
             android:onClick="pickAnswer"
             android:tag="2"
             android:text="Button2"
+            android:textSize="20sp"
             app:layout_column="0"
             app:layout_columnWeight="1"
             app:layout_gravity="fill"
@@ -97,13 +105,14 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:onClick="pickAnswer"
+            android:tag="3"
             android:text="Button3"
+            android:textSize="20sp"
             app:layout_column="1"
             app:layout_columnWeight="1"
             app:layout_gravity="fill"
             app:layout_row="1"
-            app:layout_rowWeight="1"
-            android:tag="3"/>
+            app:layout_rowWeight="1" />
     </androidx.gridlayout.widget.GridLayout>
 
     <TextView
@@ -111,9 +120,9 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="175dp"
-        android:layout_marginTop="52dp"
+        android:layout_marginTop="30dp"
         android:layout_marginEnd="178dp"
-        android:text="TextView"
+        android:text="Game Over!"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/gridLayout" />
@@ -125,7 +134,8 @@
         android:layout_marginStart="157dp"
         android:layout_marginTop="18dp"
         android:layout_marginEnd="160dp"
-        android:text="Button"
+        android:onClick="playAgain"
+        android:text="Play Again"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/gameOverTextView" />
