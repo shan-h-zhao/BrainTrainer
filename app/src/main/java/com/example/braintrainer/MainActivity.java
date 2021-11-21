@@ -17,38 +17,19 @@ public class MainActivity extends AppCompatActivity {
     int correctTag;
 
     TextView scoreTextView;
+    TextView questionTextView;
+
+    Button button0;
+    Button button1;
+    Button button2;
+    Button button3;
 
     int countCorrect = 0;
     int countTotal = 0;
 
-    // onClick function to check if the correct answer is clicked
-    public void pickAnswer(View view) {
-        Button clicked = (Button) view;
-        Log.i("clicked button", String.valueOf(clicked.getTag()));
-        Log.i("correcttag", String.valueOf(correctTag));
-        if (clicked.getTag().equals(Integer.toString(correctTag))) {
-            countCorrect += 1;
-            Log.i("clicked correct button", Integer.toString(correctTag));
-        } else {
-            Log.i("incorrect button", String.valueOf(clicked.getTag()));
-        }
-        countTotal += 1;
-        scoreTextView.setText(String.valueOf(countCorrect) + "/" + String.valueOf(countTotal));
 
-    }
-
-    @Override
-    protected void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_main);
-
-        TextView questionTextView = findViewById(R.id.questionTextView);
-        Button button0 = findViewById(R.id.button0);
-        Button button1 = findViewById(R.id.button1);
-        Button button2 = findViewById(R.id.button2);
-        Button button3 = findViewById(R.id.button3);
-
-
+    // Create a function to generate a question and answer buttons
+    public void updateQuestion () {
         // Generate a "plus" question
         final int random1 = new Random().nextInt(10);
         final int random2 = new Random().nextInt(10);
@@ -78,7 +59,39 @@ public class MainActivity extends AppCompatActivity {
             }
         }
 
-        // update score counter
+    }
+
+    // onClick function to check if the correct answer is clicked
+    public void pickAnswer(View view) {
+        Button clicked = (Button) view;
+        Log.i("clicked button", String.valueOf(clicked.getTag()));
+        Log.i("correcttag", String.valueOf(correctTag));
+        if (clicked.getTag().equals(Integer.toString(correctTag))) {
+            countCorrect += 1;
+            Log.i("clicked correct button", Integer.toString(correctTag));
+        } else {
+            Log.i("incorrect button", String.valueOf(clicked.getTag()));
+        }
+        countTotal += 1;
+        scoreTextView.setText(String.valueOf(countCorrect) + "/" + String.valueOf(countTotal));
+        updateQuestion ();
+    }
+
+    @Override
+    protected void onCreate(Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        setContentView(R.layout.activity_main);
+
+        questionTextView = findViewById(R.id.questionTextView);
+        button0 = findViewById(R.id.button0);
+        button1 = findViewById(R.id.button1);
+        button2 = findViewById(R.id.button2);
+        button3 = findViewById(R.id.button3);
+
+        // Update question
+        updateQuestion ();
+
+        // Update score counter
         scoreTextView = findViewById(R.id.scoreTextView);
 
 
