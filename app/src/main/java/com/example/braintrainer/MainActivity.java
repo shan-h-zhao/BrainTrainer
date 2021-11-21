@@ -16,11 +16,24 @@ public class MainActivity extends AppCompatActivity {
 
     int correctTag;
 
+    TextView scoreTextView;
+
+    int countCorrect = 0;
+    int countTotal = 0;
+
+    // onClick function to check if the correct answer is clicked
     public void pickAnswer(View view) {
         Button clicked = (Button) view;
+        Log.i("clicked button", String.valueOf(clicked.getTag()));
+        Log.i("correcttag", String.valueOf(correctTag));
         if (clicked.getTag().equals(Integer.toString(correctTag))) {
+            countCorrect += 1;
             Log.i("clicked correct button", Integer.toString(correctTag));
+        } else {
+            Log.i("incorrect button", String.valueOf(clicked.getTag()));
         }
+        countTotal += 1;
+        scoreTextView.setText(String.valueOf(countCorrect) + "/" + String.valueOf(countTotal));
 
     }
 
@@ -51,14 +64,22 @@ public class MainActivity extends AppCompatActivity {
         buttons.add(button2);
         buttons.add(button3);
 
-        final int correctTag = new Random().nextInt(4);
+        correctTag = new Random().nextInt(4);
         for (Button b: buttons) {
+
+            Log.i("correctTag", String.valueOf(correctTag));
+            Log.i("getTag", String.valueOf(b.getTag()));
+            Log.i("getTag", String.valueOf(b.getTag().equals(Integer.toString(correctTag))));
+
             if (b.getTag().equals(Integer.toString(correctTag))) {
                 b.setText(Integer.toString(result0));
             } else {
                 b.setText(Integer.toString(new Random().nextInt(20)));
             }
         }
+
+        // update score counter
+        scoreTextView = findViewById(R.id.scoreTextView);
 
 
 
